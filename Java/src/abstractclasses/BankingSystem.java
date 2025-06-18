@@ -59,7 +59,6 @@ class Account{
         System.out.println("Account Balance: ₹"+balance);
     }
 }
-
 class LoanAccount extends Account{
     double loanAmount, interestRate, emiAmount;
     String typeOfLoan;
@@ -71,25 +70,32 @@ class LoanAccount extends Account{
     public LoanAccount(String firstName, String lastName,  double loanAmount, String typeOfLoan, int durationInMonths){
         super(firstName, lastName,0);
         this.loanAmount=loanAmount;
+        balance=-loanAmount;
         this.typeOfLoan=typeOfLoan;
         this.durationInMonths=durationInMonths;
         int index=loansAvailable.indexOf(typeOfLoan);
         if(index==-1) System.out.println("Sorry, the loan doesn't exist");
         else{
+            interestRate=getInterestRate(index);
+            emiAmount=getEMIAmount(loanAmount,interestRate,durationInMonths);
             System.out.println("Type of Loan: "+typeOfLoan);
             System.out.println("Loan Tenure: "+durationInMonths+" months");
-            System.out.println("Interest Rate: "+getInterestRate(index));
-            System.out.println("Monthly EMI to be paid: "+getEMIAmount(loanAmount, interestRate, durationInMonths));
+            System.out.println("Interest Rate: "+interestRate+"%");
+            System.out.println("Monthly EMI to be paid: "+emiAmount);
         }
     }
     public double getInterestRate(int index){
         if(durationInMonths<= standardDurations.get(index)) return standardInterestRates.get(index);
         int differenceInMonths=durationInMonths-standardDurations.get(index);
         double extraInterest=Math.pow(compoundInterestRates.get(index),differenceInMonths)/differenceInMonths;
-        return interestRate=standardDurations.get(index)+extraInterest;
+        return interestRate=standardInterestRates.get(index)+extraInterest;
     }
     public double getEMIAmount(double loanAmount, double interestRate, int durationInMonths){
-        emiAmount=loanAmount*((Math.pow(1+interestRate,durationInMonths))/((Math.pow(1+interestRate,durationInMonths)))-1);
+        double monthlyInterestAmount=interestRate / (12 * 100);
+        double numerator = loanAmount * monthlyInterestAmount * Math.pow(1 + monthlyInterestAmount, durationInMonths);
+        double denominator = Math.pow(1 + monthlyInterestAmount, durationInMonths) - 1;
+        if (denominator == 0) return 0;
+        emiAmount = numerator / denominator;
         return emiAmount;
     }
 }
@@ -154,5 +160,11 @@ public class BankingSystem {
         JandhanAccount j1=new JandhanAccount("Sai","Sasank","12346");
         j1.deposit(10000);
         j1.showBalance();
+        System.out.println();
+        System.out.println();
+        LoanAccount l1=new LoanAccount("Yuvaraj","Poduri",2000000,"Home",180);
+        l1.deposit(10000);
+        l1.showBalance();
+
     }
 }
