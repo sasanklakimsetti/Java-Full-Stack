@@ -15,6 +15,12 @@ public class HotelOps {
         rooms2.add(new Room(202,"AC Room",3000));
         rooms2.add(new Suite(203,"Suite",6000,"North Indian"));
 
+        // this will return a Runtime Exception since there are no Suite rooms i.e. Suite objects
+//        List<Room> rooms2=new ArrayList<>();
+//        rooms2.add(new Room(201,"Normal",2000));
+//        rooms2.add(new Room(202,"AC Room",3000));
+//        rooms2.add(new Room(203,"Suite",6000));
+
         List<Level>levels=new ArrayList<>();
         Level l1=new Level(rooms1,1);
         Level l2=new Level(rooms2,2);
