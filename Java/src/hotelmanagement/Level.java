@@ -22,6 +22,6 @@ public class Level {
     }
 
     public String toString(){
-        return "Level [rooms=" + rooms + ", levelno=" + levelNo + "]";
+        return "Level: "+levelNo+ "[rooms=" + rooms  + "]\n";
     }
 }

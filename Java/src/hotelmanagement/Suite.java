@@ -7,6 +7,6 @@ public class Suite extends Room{
         this.kitchenType=kitchenType;
     }
     public String toString() {
-        return "Suite [kitchenType=" + kitchenType + ", roomNo=" + roomNo + ", type=" + type + ", rent=" + rent + "]";
+        return "Suite [kitchenType=" + kitchenType + ", roomNo=" + roomNo + ", type=" + type + ", rent=" + rent + ", kitchen type: "+kitchenType+"]";
     }
 }
