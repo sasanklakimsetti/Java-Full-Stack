@@ -1,6 +1,5 @@
 package hotelmanagement;
 
-import java.security.Provider;
 import java.util.Arrays;
 
 public class LuxurySuite extends Suite{
