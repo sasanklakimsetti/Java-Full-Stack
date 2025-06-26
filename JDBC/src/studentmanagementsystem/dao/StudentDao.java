@@ -1,7 +1,7 @@
-package dao;
+package studentmanagementsystem.dao;
 
-import model.Student;
-import db.DBConnection;
+import studentmanagementsystem.model.Student;
+import studentmanagementsystem.db.DBConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -74,6 +74,22 @@ public class StudentDao {
         }
         catch (SQLException e){e.printStackTrace();}
         return null;
+    }
+
+    public boolean update(Student student){
+        try(Connection connection=DBConnection.getConnection()){
+            PreparedStatement pst=connection.prepareStatement("UPDATE Student SET name=?, branch=?, mobileNo=? WHERE rollNo=?");
+            pst.setInt(1,student.getRollNo());
+            pst.setString(2,student.getName());
+            pst.setString(3,student.getBranch());
+            pst.setString(4,student.getMobileNo());
+
+            int rowsUpdated=pst.executeUpdate();
+            if(rowsUpdated==1) return true;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public boolean add(Student student) throws SQLException {

@@ -1,4 +1,4 @@
-package model;
+package studentmanagementsystem.model;
 
 public class Student {
     private int rollNo;

@@ -1,8 +1,8 @@
-package db;
+package studentmanagementsystem.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
-import dao.StudentDao;
-import model.Student;
+import studentmanagementsystem.dao.StudentDao;
+import studentmanagementsystem.model.Student;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,10 +28,17 @@ public class DBConnection {
             List<Student>list=dao.findAll();
             System.out.println(list);
 
-            Student st1=new Student(104,"Sumir","ECE","12345457");
+            Student st1=new Student(105,"Sasank","CSE","9133931410");
             dao.add(st1);
             list=dao.findAll();
             System.out.println(list);
+
+            Student s2=dao.findByRollNo(105);
+            System.out.println(s2);
+            s2.setName("Sai Sasank");
+            dao.update(s2);
+
+            System.out.println(s2);
 
             dao.deleteByRollNo(101);
             list=dao.findAll();
