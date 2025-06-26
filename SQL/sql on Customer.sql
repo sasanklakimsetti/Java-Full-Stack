@@ -51,3 +51,12 @@ ALTER TABLE Customer MODIFY COLUMN custid INT AUTO_INCREMENT;
 
 SELECT * FROM Customer;
 SELECT * FROM OldCustomer;
+
+-- Print customer name whose name starts with V
+SELECT * FROM Customer WHERE custname LIKE 'V%';
+-- contains SH
+SELECT * FROM Customer WHERE custname LIKE '%sh%';
+-- ends with i
+SELECT * FROM Customer WHERE custname LIKE '%i';
+-- starts with S and ends with i
+SELECT * FROM Customer WHERE custname LIKE 's%i';  -- like is case-insensitive  i.e. it will treat S and s as same
