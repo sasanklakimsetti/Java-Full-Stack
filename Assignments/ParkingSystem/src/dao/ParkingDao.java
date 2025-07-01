@@ -51,11 +51,11 @@ public class ParkingDao {
         }
     }
 
-    public static boolean unparkVehicle(String ticketId) throws SQLException {
-        try(Connection connection=ParkingOps.getConnection()){
-            PreparedStatement pst=connection.prepareStatement("")
-        }
-    }
+//    public static boolean unparkVehicle(String ticketId) throws SQLException {
+//        try(Connection connection=ParkingOps.getConnection()){
+//
+//        }
+//    }
 
     private static String generateTicket(String vehicleType, int floor, int slot, String regNo) {
         return vehicleType + "_" + floor + "_" + slot + "_" + regNo;
