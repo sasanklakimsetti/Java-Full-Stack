@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="bulboff.png" alt="" id="bulb">
+    <button onclick="bulbOnOrOff()" id="onoroff">Bulb On</button>
+
+    <script>
+        var bulbOn=false;
+        function bulbOnOrOff(){
+            var el=document.getElementById("bulb")
+            var btn=document.getElementById("onoroff")
+            if(bulbOn==false){
+                el.src="bulbon.png";
+                btn.innerHTML="Bulb Off"
+                bulbOn=true;
+            }
+            else{
+                el.src="bulboff.png";
+                btn.innerHTML="Bulb On"
+                bulbOn=false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+DOM: Document Object Model
+
+It is represented as tree.
+It follows hierarchy. Each object is an object of a class
+
+Document is object of window
+
+                        Document
+                        |
+                        html
+                        |
+                        /\
+                    head    body
+                    /|\     /|\
+meta    meta    title       div     div     div

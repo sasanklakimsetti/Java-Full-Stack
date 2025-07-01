@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="counter"></p>
+    <script>
+        function counterFunction(){
+            var page=document.getElementById("counter");
+            for(var i=1;i<=20;i++){
+                page.innerText+=i+'\n\n';
+            }
+        }
+        counterFunction()
+    </script>
+</body>
+</html>

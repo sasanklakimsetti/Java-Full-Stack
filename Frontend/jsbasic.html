@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>This is div1
+        <div>One</div>
+        <div>Two</div>
+    </div>
+    <div id="div2">This is div2, JS will change the content</div>
+
+    <script>
+        
+        // data types
+        var val=45;
+        var x="Hello";
+        var x="good";
+        x={name:"Virat",score:130};
+        var y=34;
+        var y=393;
+        var y=595;
+
+        // javascript allows the above. We can change the data of any type to any type.
+        // there is no classic datatype in js
+
+        const COLOR="Black"; // can't change the variable COLOR
+        let a=36;
+
+        // difference between var and let
+        // var is function scoped, let and const are block scoped
+        // var supports hoisting, let doesn't support hoisting
+
+        // this will work in javascript unlike other programming languages. This procedure (hoisting) i.e. we can declare the variable anywhere in the body even after initializing. Wherever we declare, it will be declared at start internally. But not the initialization
+        // we can't do that with let
+
+        function myfun(){
+            s=0;
+            for (var i=1;i<=10;i++) s=s+i;
+            var s;
+            // let s;    //throws exception since let doesn't support hoisting
+            return s;
+        }
+        console.log(myfun())
+
+        var gl="global";
+        function myfunction(){
+            gl="in myFunction";
+            console.log(gl);
+            console.log(after);  // this will print undefined
+            var after="after variable";
+        }
+        console.log(gl);
+        myfunction();
+        console.log(gl);
+
+        //window.alert("JavaScript is showing alert");
+        console.log("JavaScript is logging some logs");
+
+        // access element by id
+        var el=document.getElementById("div2");
+        el.innerHTML="Hello all!! Welcome to Javascript"
+        
+        // access element by tag name
+        var alldivs=document.getElementsByTagName("div");  // an array of all the div elements
+        console.log(alldivs.length);  // will give divs within a div
+    </script>
+</body>
+</html>
