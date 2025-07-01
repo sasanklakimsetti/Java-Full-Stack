@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <form action="url">
+        <!--we can write like this-->
+        <!-- Name: <input type="text" name="fname"> -->
+
+        <!--but we use this method to get accessible features like blind person can listen, autofill, etc
+        -->
+        <label for="name">Name:</label>
+        <input type="text" name="fname" id="name">
+
+        <input type="radio" name="gender" id="male" value="male"> <label for="male">Male</label>
+        <input type="radio" name="gender" id="female" value="female"> <label for="female">Female</label>
+        <!--if there are radio buttons with same name, we can select only one out of them-->
+
+
+        <select name="subject" id="subject">
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="Csharp">C#</option>
+        </select>
+
+        <input type="checkbox" name="subscript" id="subscript" value="subscribe">
+
+        <!--auto complete -->
+        <input type="search" list="languages" placeholder="Pick a programming language" name="language">
+        <datalist id="languages">
+            <option value="PHP"></option>
+            <option value="C++"></option>
+            <option value="Python"></option>
+            <option value="Java"></option>
+            <option value="R"></option>
+            <option value="Kotlin"></option>
+            <option value="GoLang"></option>
+        </datalist>
+        
+        <input type="submit" name="Subscribe">
+    </form>
+</body>
+</html>
