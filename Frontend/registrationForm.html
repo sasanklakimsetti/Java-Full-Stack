@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+    first name: single word
+    middle name
+    last name
+    phone and email : one of them is compulsory
+    aadhar and pan : one of them is compulsory
+    submit button
+    -->
+
+    <form action="#">
+        <div>
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname">
+            <span id="fname-error" style="color: red; font-size: 0.9em;"></span> <br>
+            <label for="mname">Middle Name</label>
+            <input type="text" name="mname" id="mname"> <br>
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname" id="lname"> <br>
+            <span id="lname-error" style="color: red; font-size: 0.9em;"></span> <br>
+        </div>
+        <div>
+            <label for="dob">Date Of Birth</label>
+            <input type="date" name="dob" id="dob">
+            <span id="dob-error" style="color: red; font-size: 0.9em;"></span> <br>
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address">
+            <span id="address-error" style="color: red; font-size: 0.9em;"></span> <br> <br>
+        </div>
+        <div>
+            Contact Details <br>
+            <label for="phone">Phone</label>
+            <input type="text" name="phone" id="phone">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email">
+            <span id="mailOrPhone-error" style="color: red; font-size: 0.9em;"></span> <br> <br>
+        </div>
+        <div>
+            Address Proofs <br>
+            <label for="aadhar">Aadhaar</label>
+            <input type="text" name="aadhar" id="aadhar">
+            <label for="pan">PAN</label>
+            <input type="text" name="pan" id="pan">
+            <span id="aadharOrPan-error" style="color: red; font-size: 0.9em;"></span> <br>
+        </div>
+        
+        <button type="submit" id="btn">Submit</button>
+    </form>
+</body>
+<script>
+    var fnameInput=document.getElementById('fname')
+    var fnamePattern=/^[a-zA-Z]+$/   // this means one or more letters
+    var fnameError=document.getElementById('fname-error')
+    var lnameInput=document.getElementById('lname')
+    var lnamePattern=/^[a-zA-Z]+$/
+    var lnameError=document.getElementById('lname-error')
+    var dobInput=document.getElementById('dob')
+    var dobError=document.getElementById('dob-error')
+    var addressInput=document.getElementById('address')
+    var addressError=document.getElementById('address-error')
+    var phoneInput=document.getElementById('phone')
+    var phonePattern=/^[0-9]{10}$/
+    var mailInput=document.getElementById('email')
+    var mailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    var mailOrPhoneError=document.getElementById('mailOrPhone-error')
+    var aadharInput=document.getElementById('aadhar')
+    var aadhaarpattern=/^[0-9]{12}$/
+    var panInput=document.getElementById('pan')
+    var panPattern=/^[A-Z|a-z][A-Z|a-z][A-Z|a-z][A-Z|a-z][A-Z*a-z][0-9]{4}[A-Z|a-z]$/
+    var aadharOrPanError=document.getElementById('aadharOrPan-error')
+    var btnInput=document.getElementById('btn')
+
+    var ntgEmpty=true
+
+    fnameInput.addEventListener("input",function(){
+        if(fnamePattern.test(fnameInput.value)){
+            ntgEmpty=true
+            console.log("Fname Passed")
+            fnameError.innerHTML=""
+        }
+        else if(fnameInput.value.trim()===""){
+            ntgEmpty=false
+            fnameError.innerHTML="<br>"+"First Name can't be empty"
+        }
+        else{
+            console.log("Fname Failed")
+            fnameError.innerHTML="<br>"+"First Name should contain only one word"
+        }
+    })
+    lnameInput.addEventListener("input",function(){
+        if(lnamePattern.test(lnameInput.value)){
+            ntgEmpty=true
+            console.log("Lname Passed")
+            lnameError.innerHTML=""
+        }
+        else if(lnameInput.value.trim()==""){
+            ntgEmpty=false
+            lnameError.innerHTML="<br>"+"Last Name can't be empty"
+        }
+        else{
+            console.log("Lname Failed")
+            lnameError.innerHTML="<br>"+"Last Name should contain only one word"
+        }
+    })
+    dobInput.addEventListener("input",function(){
+        if(dobInput.value.trim()===""){
+            dobError.innerHTML="<br>"+"Date of Birth must be provided. Can't be empty"
+            console.log("Date Of Birth failed")
+            ntgEmpty=false
+        }
+        else{
+            console.log("Date of Birth passed")
+            dobError.innerHTML=""
+            ntgEmpty=true;
+        }
+    })
+
+    addressInput.addEventListener("input",function(){
+        if(addressInput.value.trim()===""){
+            addressError.innerHTML="<br>"+"Address must be provided. Can't be empty"
+            console.log("Address failed")
+            ntgEmpty=false
+        }
+        else{
+            console.log("Address passed")
+            dobError.innerHTML=""
+            ntgEmpty=true;
+        }
+    })
+    var phoneError=false
+    var mailError=false
+    phoneInput.addEventListener("input", function(){
+        if(phonePattern.test(phoneInput.value)){
+            phoneError=true
+            console.log("Phone passed")
+        }
+        else if(phoneInput.value.trim()===""){
+            phoneError=false
+            console("Phone empty")
+        }
+        else{
+            console.log("Phone failed")
+        }
+    })
+    mailInput.addEventListener("input", function(){
+        if(mailPattern.test(mailInput.value)){
+            mailError=true
+            console.log("Mail passed")
+        }
+        else if(mailInput.value.trim()===""){
+            mailError=false
+            console.log("Mail empty")
+        }
+        else{
+            console.log("Mail failed")
+        }
+    })
+    if(!phoneError && !mailError){
+        mailOrPhoneError.innerHTML="<br>"+"Mail and Phone both can't be empty. Either of them should be filled"
+    }
+    else mailOrPhoneError.innerHTML=""
+    var aadharEmpty=false
+    var panEmpty=false
+    aadharInput.addEventListener("input",function(){
+        if(aadhaarpattern.test(aadharInput.value)) {
+            aadharEmpty=true
+            console.log("aadhar passed")
+        }
+        else if(aadharInput.value.trim()===""){
+            aadharEmpty=false;
+            console.log("aadhar empty")
+        }
+        else {
+            console.log("failed")
+        }
+    })
+    panInput.addEventListener("input",function(){
+        this.value=this.value.toUpperCase()
+        if(panPattern.test(this.value)){
+            panEmpty=true
+            console.log("PAN passed")
+        } 
+        else if(panInput.value.trim()===""){
+            panEmpty=false;
+            console.log("PAN empty")
+        }
+        else{
+            console.log("PAN failed")
+        }
+    })
+    if(!aadharEmpty&&!panEmpty) aadharOrPanError.innerHTML="Aadhaar and PAN both can't be empty. Either of them should be filled."
+    else aadharOrPanError.innerHTML=""
+</script>
+</html>

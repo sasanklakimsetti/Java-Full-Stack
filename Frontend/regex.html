@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regular Expressions in JavaScript</title>
+</head>
+<body id="body">
+    <form action="#">
+        Aadhaar: <input type="text" name="aadhaar" id="aadhaar" pattern="[0-9]{12}"> <!--should have 12 digits only-->
+        <br>
+        PAN: <input type="text" name="pan" id="pan">
+        <!--if the pan is in correct format, the background should be green, else orange-->
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<script>
+    var aadhaarpattern=/^[0-9]{12}$/    // should have 12 digits only. the regular expression should be written between / /
+    // ^ means start, $ means end. there shouldn't be anything except the mentioned between them
+    document.getElementById('aadhaar').addEventListener("input",function(){
+        if(aadhaarpattern.test(document.getElementById('aadhaar').value)) console.log("aadhaar pass")
+        else console.log("fail")
+    })
+
+    var panPattern=/^[A-Z|a-z][A-Z|a-z][A-Z|a-z][A-Z|a-z][A-Z*a-z][0-9]{4}[A-Z|a-z]$/   // ex: ABCDE1234F
+    document.getElementById('pan').addEventListener("input",function(){
+        this.value=this.value.toUpperCase()
+        if(panPattern.test(this.value)){
+            console.log("PAN passed")
+            document.getElementById('body').style="background: green"
+        } else{
+            console.log("PAN failed")
+            document.getElementById('body').style="background: orange"
+        }
+    })
+
+</script>
+</html>
