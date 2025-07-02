@@ -5,16 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    table,th,td{
+        border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+    }
+</style>
 <body>
     <!--populate data of the table using the data in the array-->
     <table>
         <thead>
             <th>Sr.No</th>
             <th>Name</th>
-            <th>Date</th>
+            <th>Date of Birth</th>
             <th>Age</th>
         </thead>
-        <tbody>
+        <tbody id="tableBody">
 
         </tbody>
     </table>
@@ -24,22 +31,35 @@
         {name:'sasank',dob:new Date("December 10, 2004 01:35:21")},
         {name:'yuvaraj',dob:new Date("November 22, 2004 01:35:21")},
         {name:'sahithi',dob:new Date("September 28, 2010 01:35:21")},
-        {name:'ram',dob:new Date("December 31, 2004 01:35:21")},
+        {name:'ram',dob:new Date("December 31, 2004 01:35:21")}
     ]
 
     // sort this array as per the dob (youngest first)
     students.sort((a,b)=>b.dob-a.dob)
     console.log(students)
 
+    // sort this array based on string length
     students.sort((a,b)=>a.name.length-b.name.length)
     console.log(students)
-
-    var table=document.querySelector('table')
-    var tableHeaders=table.querySelectorAll('thead th')
+    function calculateAge(dob){
+        const diff = Date.now() - dob.getTime();
+        const ageDate = new Date(diff);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+    const table=document.querySelector('table')
+    const tableHeaders=table.querySelectorAll('thead th')
     console.log(tableHeaders.length)
-    var tableBody=table.querySelectorAll('tbody')
+    const tableBody=document.getElementById('tableBody')
     students.forEach((student, index)=>{
         const row=document.createElement('tr')
-    })
+        row.innerHTML=`
+            <td>${index+1}</td>
+            <td>${student.name}</td>
+            <td>${student.dob}</td>
+            <td>${calculateAge(student.dob)}</td>
+
+        `
+        tableBody.appendChild(row)
+    });
 </script>
 </html>
