@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--populate data of the table using the data in the array-->
+    <table>
+        <thead>
+            <th>Sr.No</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Age</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<script>
+    var students=[
+        {name:'sasank',dob:new Date("December 10, 2004 01:35:21")},
+        {name:'yuvaraj',dob:new Date("November 22, 2004 01:35:21")},
+        {name:'sahithi',dob:new Date("September 28, 2010 01:35:21")},
+        {name:'ram',dob:new Date("December 31, 2004 01:35:21")},
+    ]
+
+    // sort this array as per the dob (youngest first)
+    students.sort((a,b)=>b.dob-a.dob)
+    console.log(students)
+
+    students.sort((a,b)=>a.name.length-b.name.length)
+    console.log(students)
+
+    var table=document.querySelector('table')
+    var tableHeaders=table.querySelectorAll('thead th')
+    console.log(tableHeaders.length)
+    var tableBody=table.querySelectorAll('tbody')
+    students.forEach((student, index)=>{
+        const row=document.createElement('tr')
+    })
+</script>
+</html>

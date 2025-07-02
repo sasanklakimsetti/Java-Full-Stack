@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Hide or show all the items in the list on click of button-->
+    <h3 id="displayItems"></h3>
+    <button id="btn" onclick="hideOrShow()">Hide</button>
+</body>
+<script>
+    let arr=["html","css","javascript","java","spring","jdbc"]
+    var displayItems=document.getElementById('displayItems')
+    var btn=document.getElementById('btn')
+    for(let i=0;i<arr.length;i++) displayItems.innerHTML+=arr[i]+"\n"
+    var show=true
+    function hideOrShow(){
+        if(show){
+            displayItems.innerHTML=""
+            show=false
+            btn.innerHTML="Show"
+        }
+        else{
+            for(let i=0;i<arr.length;i++) displayItems.innerHTML+=arr[i]+"\n"
+            show=true
+            btn.innerHTML="Hide"
+        }
+    }
+</script>
+</html>

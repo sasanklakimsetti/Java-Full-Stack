@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="fruit" id="fruit" placeholder="Select a fruit">
+        <!--to be populated from the array fruits using javascript-->
+    </select>
+
+    You have selected <span id="fruitSelected">mango</span>
+</body>
+<script>
+    let fruits=['mango','banana','apple','grapes','dates']
+    var fruitsDropdown=document.getElementById("fruit")
+    // dynamically creating a dropdown using the elements of the array
+    for(let i=0;i<fruits.length;i++){
+        //var option=document.createElement("option")
+        //option.value=fruits[i]
+        //option.textContent=fruits[i]
+        //fruitsDropdown.appendChild(option)
+
+        // another method
+        fruitsDropdown.innerHTML+="<option>"+fruits[i]+"</option"
+    }
+    var fruitSelected=document.getElementById('fruitSelected')
+    function printFruit(){
+        let selectEl=document.getElementById('fruit')
+        fruitSelected.innerHTML=fruits[selectEl.selectedIndex]
+    }
+    fruitsDropdown.addEventListener("change",printFruit)
+</script>
+</html>
