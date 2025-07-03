@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="startTimer()">Start</button> <br><span id="time"></span> <br>
+    <button onclick="stopTimer()">Stop</button>
+</body>
+<script>
+    var count=10
+    var temp=count
+    var interval
+    function startTimer(){
+        setTimeout(()=>{console.log('3 seconds over')},3000)   // after 3 seconds, call this function
+        interval=setInterval(()=>{
+            if(temp>0)document.getElementById('time').innerHTML=temp--
+            else if(temp==0){
+                let video = document.createElement('video');
+                video.src = "explosion.mp4";
+                video.autoplay = true;
+                video.style.position = "fixed";
+                video.style.top = 0;
+                video.style.left = 0;
+                video.style.width = "100%";
+                video.style.height = "100%";
+                video.style.objectFit = "cover";
+                video.style.zIndex = 9999;
+                document.body.appendChild(video);
+                console.log("Bomb blast successful")
+            }
+        },1000)  // for every 1 seconds, call this function
+    }
+    function stopTimer(){
+        clearInterval(interval)  
+    }
+</script>
+</html>

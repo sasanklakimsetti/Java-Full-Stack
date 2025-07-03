@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>See console as well</p>
+    <div id="show"></div>
+</body>
+<script>
+    function displayOnConsole(data){
+        console.log(data)
+    }
+    function displayOnScreen(data){
+        var el=document.getElementById('show')
+        el.innerHTML+="<div>"+data+"</div>"
+    }
+    function showRandom(min, max, fun){
+        for(let i=min;i<=max;i++){
+            var rand=Math.floor(Math.random()*(max-min+1));
+            fun(rand)  // callback function
+        }
+    }
+    // using the same function with different functions
+    // fun will be the function name
+    showRandom(10,20,displayOnConsole)
+    showRandom(10,20,displayOnScreen)
+</script>
+</html>

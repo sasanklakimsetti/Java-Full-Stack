@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="sortPrice" onclick="sortPrice()">Sort by Price</button>
+    <button onclick="populateMobiles()">Show normal</button>
+    <table id="mobiles">
+        <thead>
+            <th>S. No</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price</th>
+        </thead>
+    </table>
+    <button id="newItem">Add New</button>
+</body>
+<script>
+    function createRow(no, brand, model, price){
+        var tr=document.createElement('tr')
+        var tdNo=document.createElement('td')
+        tdNo.innerHTML=no
+        var tdBrand=document.createElement('td')
+        tdBrand.innerHTML=brand
+        var tdModel=document.createElement('td')
+        tdModel.innerHTML=model
+        var tdPrice=document.createElement('td')
+        tdPrice.innerHTML=price
+        var tdLikeBtn=document.createElement('button')
+        tdLikeBtn.addEventListener("click", function(){
+            tr.style.background='green'
+        })
+        tdLikeBtn.innerHTML=`<img src="like.png" style="height: 20px"">`
+        var tdDislikeBtn=document.createElement('button')
+        tdDislikeBtn.addEventListener("click", function(){
+            tr.style.background="red"
+        })
+        tdDislikeBtn.innerHTML=`<img src="dislike.png" style="height: 20px">`
+        tr.appendChild(tdNo)
+        tr.appendChild(tdBrand)
+        tr.appendChild(tdModel)
+        tr.appendChild(tdPrice)
+        tr.appendChild(tdLikeBtn)
+        tr.appendChild(tdDislikeBtn)
+        return tr
+    }
+    var mobiles=[
+    {brand:"Samsung", model:"S24",price:84999},
+    {brand:"Samsung", model:"M35",price:16999},
+    {brand:"Apple", model:"iPhone 16",price:87999},
+    {brand:"Vivo", model:"V30", price:29999}
+    ]
+    function populateMobiles(){
+        var table=document.getElementById('mobiles')
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+        var i=1
+        for(let mob of mobiles){
+            let row=createRow(i,mob.brand, mob.model,mob.price)
+            table.appendChild(row)
+            i++
+        }
+    }
+    populateMobiles()
+    function sortPrice(){
+        var sortedMobiles=[...mobiles]
+        sortedMobiles.sort((a,b)=>a.price-b.price)
+        var table=document.getElementById('mobiles')
+        while (table.rows.length > 1) {
+            table.deleteRow(1);
+        }
+        var i=1
+        for(let mob of sortedMobiles){
+            let row=createRow(i,mob.brand, mob.model,mob.price)
+            table.appendChild(row)
+            i++
+        }
+    }
+    var btn=document.getElementById('newItem')
+    btn.addEventListener("click", function(){
+        var form=document.createElement('form')
+        form.id='newMobile'
+        form.innerHTML=`<form action="#">
+            Brand: <input type="text" name="brand" id="brand"> <br>
+            Model: <input type="text" name="model" id="model"> <br>
+            Price: <input type="text" name="price" id="price"> <br>
+            <button type="submit">Add Mobile</>
+        </form>`
+        form.addEventListener("submit",function(e){
+            e.preventDefault()
+            const brand=document.getElementById('brand').value
+            const model=document.getElementById('model').value
+            const price=parseFloat(document.getElementById('price').value)
+
+            if(brand && model && !isNaN(price)){
+                mobiles.push({brand, model, price})
+                populateMobiles()
+                form.remove()
+            }
+            else{
+                alert("Please fill all details")
+            }
+
+        })
+        document.body.appendChild(form)
+    })
+</script>
+</html>
