@@ -136,6 +136,9 @@
     })
     var phoneError=false
     var mailError=false
+    var aadharEmpty=false
+    var panEmpty=false
+
     phoneInput.addEventListener("input", function(){
         if(phonePattern.test(phoneInput.value)){
             phoneError=true
@@ -162,12 +165,6 @@
             console.log("Mail failed")
         }
     })
-    if(!phoneError && !mailError){
-        mailOrPhoneError.innerHTML="<br>"+"Mail and Phone both can't be empty. Either of them should be filled"
-    }
-    else mailOrPhoneError.innerHTML=""
-    var aadharEmpty=false
-    var panEmpty=false
     aadharInput.addEventListener("input",function(){
         if(aadhaarpattern.test(aadharInput.value)) {
             aadharEmpty=true
@@ -195,7 +192,12 @@
             console.log("PAN failed")
         }
     })
-    if(!aadharEmpty&&!panEmpty) aadharOrPanError.innerHTML="Aadhaar and PAN both can't be empty. Either of them should be filled."
-    else aadharOrPanError.innerHTML=""
+
+    btnInput.addEventListener("click", function(){
+        if(!phoneError && !mailError) mailOrPhoneError.innerHTML="<br>"+"Mail and Phone both can't be empty. Either of them should be filled"
+        else mailOrPhoneError.innerHTML=""
+        if(!aadharEmpty&&!panEmpty) aadharOrPanError.innerHTML="Aadhaar and PAN both can't be empty. Either of them should be filled."
+        else aadharOrPanError.innerHTML=""
+    })
 </script>
 </html>
