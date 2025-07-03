@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>See Console</h2>
+    <p id="data"></p>
+</body>
+<script>
+
+    function sum(a,b){
+        return a+b
+    }
+    //JavaScript Promises make handling asynchronous operations like API calls, file loading, or time delays easier. Think of a Promise as a placeholder for a value that will be available in the future. It can be in one of three states
+    //Pending: The task is in the initial state.
+    //Fulfilled: The task was completed successfully, and the result is available.
+    //Rejected: The task failed, and an error is provided.
+
+    // JavaScript is a single-threaded language, meaning it executes one task at a time.
+    // If a long-running task like an API call or file loading is done synchronously, it will block the whole page.
+
+    // To avoid this blocking, JavaScript uses asynchronous techniques like Promises.
+    // A Promise represents a value that may not be available yet, but will be resolved in the future.
+    // While the Promise is pending, other tasks can continue running.
+    // Once the task completes, the Promise either resolves (success) or rejects (failure), and the result can be handled using .then() or async/await.
+
+    // if we add async to a function, it will become a promise
+    async function add(a, b){
+        return a+b
+    }
+
+    // the actual definition of above function 
+    function actualAdd(a, b){
+        return new Promise(function(resolve, reject){
+            try{
+                var c=a+b
+                resolve(c)
+            }
+            catch(err){
+                reject(err)
+            }
+        })
+    }
+
+    async function dothings(){
+        var ans=await add(5,6)  // we need to wait for add() to return the value
+        // these lines will displayed on the console only after the add() returns the value to ans
+        console.log("after calling add that takes time")
+        console.log("value returned in ans: "+ans)
+    }
+    dothings()
+    console.log(sum(4,5))
+    var val=add(4,5)
+    val.then((data)=>{
+        console.log("data after promise is completed: "+data)
+    })
+    console.log("last line")
+
+    async function loadData(){
+        //var resp=await fetch("myfile.txt")  // fetch will return an http response. we used await because it takes time to fetch the document if the file contains a lot of data
+        //console.log(await resp)  // this will be an http response. we used await because it takes time to get the response from server
+        //console.log(await resp.text())  // this will convert the http response into text. we used await before resp.text() because the server takes time to convert an http request into text
+
+        // the above code can also be written like
+        fetch("myfile.txt")
+        .then((resp)=> resp.text())  // when the fetching of a file gets completed, this will return a promise
+        .then((data)=>{
+            console.log(data)
+            document.getElementById('data').innerHTML=data
+        })  // when the response is successfully got, display the data on the console. use {} if we have multiple lines of code to execute
+        .catch((err)=>console.log("error happened: "+err))  // if any error occurs, print the error on the console
+    }
+    loadData()
+</script>
+</html>
