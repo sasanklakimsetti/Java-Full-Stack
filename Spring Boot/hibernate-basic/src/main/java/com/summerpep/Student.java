@@ -1,14 +1,11 @@
-package com.summerpep.model;
+package com.summerpep;
 
 import jakarta.persistence.*;
 
 import java.util.Date;
 
-// Entity means this class is associated with some table in the database
 @Entity
 public class Student {
-    // Id means identity i.e. primary key in sql
-    // Without Id, hibernate doesn't work at all
     @Id
     int rollno;
     String sname;
@@ -16,7 +13,6 @@ public class Student {
     String mobileno;
     Date dob;
     Integer marks;
-
     public enum Gender {
         male, female
     }
@@ -25,16 +21,30 @@ public class Student {
     @Column(name = "gender")
     Gender gender;
 
-    public Student(){
+    @Override
+    public String toString() {
+        return "Student{" +
+                "rollno=" + rollno +
+                ", sname='" + sname + '\'' +
+                ", branch='" + branch + '\'' +
+                ", mobileno='" + mobileno + '\'' +
+                ", dob=" + dob +
+                ", marks=" + marks +
+                ", gender=" + gender +
+                '}';
     }
-    public Student(int rollno, String sname, String branch, String mobileno, Date dob, Integer marks, Gender gender) {
-        this.rollno=rollno;
+    public Student(String sname, String branch, String mobileno, Date dob, Integer marks, Gender gender) {
         this.sname = sname;
         this.branch = branch;
         this.mobileno = mobileno;
         this.dob = dob;
         this.marks = marks;
         this.gender = gender;
+    }
+    // in hibernate, we must create a default constructor if we create any parameterized constructor.
+    // otherwise, hibernate won't work
+    // we don't need to create default constructor if we don't have any parameterized constructor
+    public Student() {
     }
 
     public int getRollno() {
@@ -91,18 +101,5 @@ public class Student {
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "rollNo=" + rollno +
-                ", sname='" + sname + '\'' +
-                ", branch='" + branch + '\'' +
-                ", mobileNo='" + mobileno + '\'' +
-                ", dob=" + dob +
-                ", marks=" + marks +
-                ", gender=" + gender +
-                '}';
     }
 }
