@@ -1,0 +1,5 @@
+maven is a project management tool.
+
+In Spring Boot, Bean means one object
+Bean is an object created by Spring
+To create beans, there are three methods: 
