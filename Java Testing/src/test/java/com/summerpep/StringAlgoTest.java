@@ -29,7 +29,7 @@ public class StringAlgoTest {
     void testShift2Chars() {
         String actual=obj.shift2Chars("hello");
         String expected="llohe";
-        assertEquals(expected, actual);
+        assertEquals(expected, actual); // It automatically checks expected vs actual and fails if they don’t match.
         System.out.println("Hello passed");
     }
 
@@ -44,7 +44,7 @@ public class StringAlgoTest {
     void testShift2CharsException(){
         assertThrows(StringIndexOutOfBoundsException.class,()->{
             String actual=obj.shift2Chars("a");
-        });
+        });  //It automatically checks that your code throws the right exception under the right conditions.
         System.out.println("a passed");
     }
 }

@@ -10,7 +10,7 @@ public class StringAlgo {
         if(str.length()==2) return str;
         if(str.length()<2) return str;
         String sub=str.substring(0,2);
-        String sub2=str.substring(2,str.length());
+        String sub2=str.substring(2);
         return sub2+sub;
     }
     public static void main(String[] args){
