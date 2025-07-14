@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -41,6 +42,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public boolean remove(User user) {
+        if(userRepository.findById(user.getUsername()).isPresent()){
+            userRepository.deleteById(user.getUsername());
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    @Transactional
+    public User updateUser(User user) {
+        if(userRepository.findById(user.getUsername()).isPresent()){
+            userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional
     public boolean checkLogin(String username, String password) {
         log.debug("checkLogin called, check for "+username+", "+password);
         try {
@@ -55,5 +76,11 @@ public class UserServiceImpl implements UserService {
             log.error("Credentials not matched");
             return false;
         }
+    }
+
+    @Override
+    @Transactional
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

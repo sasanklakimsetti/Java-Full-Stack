@@ -1,2 +1,4 @@
 *.sql linguist-detectable=true
 *.sql linguist-language=sql
+*.jsp linguist-detectable=true
+*.jsp linguist-language=Java Server Pages
