@@ -20,6 +20,10 @@ public class ToDo {
     private Date todoDate;
     private boolean completed;
 
+    public ToDo() {
+
+    }
+
     public int getTodoid() {
         return todoid;
     }
@@ -69,5 +73,12 @@ public class ToDo {
                 ", todoDate=" + todoDate +
                 ", completed=" + completed +
                 '}';
+    }
+
+    public ToDo(User user, String description, Date todoDate, boolean completed) {
+        this.user = user;
+        this.description = description;
+        this.todoDate = todoDate;
+        this.completed = completed;
     }
 }

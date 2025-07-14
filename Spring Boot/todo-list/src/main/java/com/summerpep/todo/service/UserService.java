@@ -5,4 +5,6 @@ import com.summerpep.todo.model.User;
 public interface UserService {
     User findUsername(String username);
     User addUser(User user);
+
+    boolean checkLogin(String username, String password);
 }

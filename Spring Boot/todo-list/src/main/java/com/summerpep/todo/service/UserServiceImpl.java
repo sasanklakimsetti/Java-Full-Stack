@@ -7,10 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
 
+@Service
 public class UserServiceImpl implements UserService {
     private static final Logger log= LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
@@ -35,5 +37,23 @@ public class UserServiceImpl implements UserService {
         log.debug("trying to add user "+user.getUsername());
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    @Transactional
+    public boolean checkLogin(String username, String password) {
+        log.debug("checkLogin called, check for "+username+", "+password);
+        try {
+            Optional<User>optional=userRepository.findById(username);
+            if(optional.isPresent()){
+                String passInDb=optional.get().getPassword();
+                if(passInDb.equals(password)) return true;
+            }
+            return false;
+        }
+        catch (Exception e){
+            log.error("Credentials not matched");
+            return false;
+        }
     }
 }
