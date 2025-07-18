@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -82,5 +83,14 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User patchUser(Map<String, String> map){
+        User user=userRepository.findById(map.get("username")).get();
+
+        if(map.containsKey("enabled")) user.setEnabled(Boolean.valueOf(map.get("enabled")));
+        if(map.containsKey("password")) user.setPassword(map.get("password"));
+        return user;
     }
 }
